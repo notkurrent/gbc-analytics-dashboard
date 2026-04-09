@@ -1,0 +1,27 @@
+[
+  {
+    "firstName": "Иван",
+    "lastName": "Иванов",
+    "phone": "+7 777 123 45 67",
+    "email": "ivanov@example.com",
+    "orderType": "fizik",
+    "orderMethod": "phone",
+    "status": "new",
+    "items": [
+      {
+        "productName": "Корректирующее белье Classic",
+        "quantity": 1,
+        "initialPrice": 15000
+      }
+    ],
+    "delivery": {
+      "address": {
+        "city": "Алматы",
+        "text": "ул. Абая, 15, кв. 42"
+      }
+    },
+    "customFields": {
+      "utm_source": "telegram"
+    }
+  }
+]
