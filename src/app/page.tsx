@@ -121,12 +121,12 @@ export default async function DashboardPage() {
     <div className="min-h-screen bg-background pb-12 relative selection:bg-primary/30 overflow-x-hidden">
       {/* Premium Ambient Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-chart-1/10 blur-[120px]" />
-        <div className="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-chart-2/10 blur-[150px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-chart-1/10 blur-[60px] md:blur-[120px]" />
+        <div className="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-chart-2/10 blur-[80px] md:blur-[150px]" />
       </div>
 
       {/* Header section with a subtle gradient matching the dark luxury aesthetic */}
-      <div className="relative z-10 border-b border-white/5 bg-background/50 backdrop-blur-xl overflow-hidden shadow-2xl">
+      <div className="relative z-10 border-b border-white/5 bg-background/80 md:bg-background/50 md:backdrop-blur-xl overflow-hidden shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-chart-1/10 via-transparent to-chart-2/5 pointer-events-none" />
         <div className="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-1000">

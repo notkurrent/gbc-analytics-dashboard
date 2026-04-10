@@ -53,7 +53,7 @@ export function RecentOrders({ orders }: RecentOrdersProps) {
   };
 
   return (
-    <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl overflow-hidden group">
+    <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 shadow-xl overflow-hidden group">
       <CardHeader>
         <CardTitle className="text-white drop-shadow-sm">Последние заказы {showAll && `(${orders.length})`}</CardTitle>
         <CardDescription className="text-zinc-400">Сводка самых свежих заказов</CardDescription>
