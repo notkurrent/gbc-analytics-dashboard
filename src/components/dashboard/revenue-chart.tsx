@@ -1,19 +1,8 @@
 "use client";
 
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 const chartConfig = {
   revenue: {
@@ -51,9 +40,9 @@ export function RevenueChart({ data }: RevenueChartProps) {
               tickFormatter={(value) => value.slice(5, 10)}
               tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 12 }}
             />
-            <YAxis 
-              tickLine={false} 
-              axisLine={false} 
+            <YAxis
+              tickLine={false}
+              axisLine={false}
               tickMargin={10}
               tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
               tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 12 }}
@@ -74,7 +63,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
               strokeWidth={3}
               fillOpacity={1}
               fill="url(#fillRevenue)"
-              animationDuration={1500}
+              isAnimationActive={false}
               style={{ filter: "drop-shadow(0px 4px 8px rgba(0,0,0,0.5))" }}
             />
           </AreaChart>

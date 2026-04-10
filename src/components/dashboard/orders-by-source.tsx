@@ -1,19 +1,8 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import * as React from "react";
 
 interface OrdersBySourceProps {
@@ -44,11 +33,7 @@ export function OrdersBySource({ data }: OrdersBySourceProps) {
       </CardHeader>
       <CardContent className="flex-1 min-h-[300px]">
         <ChartContainer config={chartConfig} className="h-[300px] w-full">
-          <BarChart
-            data={data}
-            layout="vertical"
-            margin={{ top: 0, right: 30, left: 10, bottom: 0 }}
-          >
+          <BarChart data={data} layout="vertical" margin={{ top: 0, right: 30, left: 10, bottom: 0 }}>
             <CartesianGrid horizontal={false} strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <YAxis
               dataKey="source"
@@ -64,11 +49,7 @@ export function OrdersBySource({ data }: OrdersBySourceProps) {
               cursor={{ fill: "rgba(255,255,255,0.05)" }}
               content={<ChartTooltipContent hideLabel className="bg-background/90 backdrop-blur-md border-white/10" />}
             />
-            <Bar
-              dataKey="orders"
-              radius={[0, 4, 4, 0]}
-              animationDuration={1500}
-            >
+            <Bar dataKey="orders" radius={[0, 4, 4, 0]} isAnimationActive={false}>
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} />
               ))}

@@ -32,9 +32,11 @@ export default async function DashboardPage() {
   const sortedByDate = [...rawOrders].sort((a, b) => a.created_at.localeCompare(b.created_at));
 
   // Determine if this is a test dataset (e.g. all 50 mock orders imported on the same day)
-  const timeSpanMs = sortedByDate.length > 1 
-    ? new Date(sortedByDate[sortedByDate.length - 1].created_at).getTime() - new Date(sortedByDate[0].created_at).getTime()
-    : 0;
+  const timeSpanMs =
+    sortedByDate.length > 1
+      ? new Date(sortedByDate[sortedByDate.length - 1].created_at).getTime() -
+        new Date(sortedByDate[0].created_at).getTime()
+      : 0;
   const isTestDataset = timeSpanMs < 3 * 24 * 60 * 60 * 1000; // Less than 3 days span
 
   const demoStatuses = ["new", "completed", "delivering", "canceled", "completed", "completed", "delivering"];
@@ -148,17 +150,17 @@ export default async function DashboardPage() {
           </section>
 
           {/* Charts grid */}
-          <section className="grid gap-6 md:grid-cols-2">
-            <div className="w-full">
+          <section className="grid w-full gap-6 md:grid-cols-2">
+            <div className="min-w-0 w-full overflow-hidden">
               <OrdersChart data={ordersChartData} />
             </div>
-            <div className="w-full">
+            <div className="min-w-0 w-full overflow-hidden">
               <RevenueChart data={revenueChartData} />
             </div>
-            <div className="w-full">
+            <div className="min-w-0 w-full overflow-hidden">
               <OrdersByCity data={ordersByCityData} />
             </div>
-            <div className="w-full">
+            <div className="min-w-0 w-full overflow-hidden">
               <OrdersBySource data={ordersBySourceData} />
             </div>
           </section>

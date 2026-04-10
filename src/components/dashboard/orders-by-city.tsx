@@ -2,19 +2,8 @@
 
 import * as React from "react";
 import { Pie, PieChart, Cell } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 interface OrdersByCityProps {
   data: { city: string; orders: number; fill: string }[];
@@ -44,10 +33,7 @@ export function OrdersByCity({ data }: OrdersByCityProps) {
         <CardDescription className="text-zinc-400">Распределение заказов</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square max-h-[300px]"
-        >
+        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[300px]">
           <PieChart>
             <ChartTooltip
               content={<ChartTooltipContent hideLabel className="bg-background/90 backdrop-blur-md border-white/10" />}
@@ -60,7 +46,7 @@ export function OrdersByCity({ data }: OrdersByCityProps) {
               innerRadius={60}
               strokeWidth={2}
               stroke="transparent"
-              animationDuration={1500}
+              isAnimationActive={false}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} />

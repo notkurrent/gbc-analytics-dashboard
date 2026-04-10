@@ -1,19 +1,8 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 export const description = "Заказы по дням";
 
@@ -47,22 +36,17 @@ export function OrdersChart({ data }: OrdersChartProps) {
               tickFormatter={(value) => value.slice(5, 10)} // Show MM-DD roughly
               tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 12 }}
             />
-            <YAxis 
-              tickLine={false} 
-              axisLine={false} 
-              tickMargin={10} 
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={10}
               tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 12 }}
             />
             <ChartTooltip
               cursor={{ fill: "var(--color-chart-1)", opacity: 0.1 }}
               content={<ChartTooltipContent hideLabel className="bg-background/90 backdrop-blur-md border-white/10" />}
             />
-            <Bar
-              dataKey="orders"
-              fill="var(--color-chart-1)"
-              radius={[4, 4, 0, 0]}
-              animationDuration={1500}
-            />
+            <Bar dataKey="orders" fill="var(--color-chart-1)" radius={[4, 4, 0, 0]} isAnimationActive={false} />
           </BarChart>
         </ChartContainer>
       </CardContent>
