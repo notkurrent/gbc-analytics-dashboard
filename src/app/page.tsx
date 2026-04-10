@@ -118,7 +118,7 @@ export default async function DashboardPage() {
   const recentOrders = sortedByDate.sort((a, b) => b.created_at.localeCompare(a.created_at));
 
   return (
-    <div className="min-h-screen bg-background pb-12 relative selection:bg-primary/30 overflow-x-hidden">
+    <div className="min-h-screen bg-background pb-12 relative selection:bg-primary/30">
       {/* Premium Ambient Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-chart-1/10 blur-[60px] md:blur-[120px]" />
@@ -138,9 +138,9 @@ export default async function DashboardPage() {
 
       {/* Main dashboard content */}
       <main className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-1200 delay-150 fill-mode-both">
+        <div className="flex flex-col gap-6">
           {/* Top KPI row */}
-          <section>
+          <section className="animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-150 fill-mode-both">
             <StatsCards
               totalOrders={totalOrders}
               totalRevenue={totalRevenue}
@@ -150,7 +150,7 @@ export default async function DashboardPage() {
           </section>
 
           {/* Charts grid */}
-          <section className="grid w-full gap-6 md:grid-cols-2">
+          <section className="grid w-full gap-6 md:grid-cols-2 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300 fill-mode-both">
             <div className="min-w-0 w-full overflow-hidden">
               <OrdersChart data={ordersChartData} />
             </div>
@@ -166,7 +166,7 @@ export default async function DashboardPage() {
           </section>
 
           {/* Bottom Table section */}
-          <section>
+          <section className="animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 fill-mode-both">
             <RecentOrders orders={recentOrders} />
           </section>
         </div>
