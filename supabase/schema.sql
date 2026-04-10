@@ -14,6 +14,7 @@ CREATE TABLE orders (
   utm_source    TEXT,
   total_amount  INTEGER NOT NULL DEFAULT 0,
   items_count   INTEGER NOT NULL DEFAULT 0,
+  notified      BOOLEAN NOT NULL DEFAULT false,
   created_at    TIMESTAMPTZ DEFAULT now(),
   updated_at    TIMESTAMPTZ DEFAULT now()
 );

@@ -36,7 +36,8 @@ interface RetailCrmOrder {
     utm_source?: string;
   };
   items?: Array<{
-    offer?: { displayName?: string };
+    offer?: { displayName?: string; name?: string };
+    productName?: string;
     quantity: number;
     initialPrice: number;
   }>;
@@ -116,14 +117,8 @@ async function main() {
 
     for (const order of data.orders) {
       try {
-        const totalAmount = (order.items || []).reduce(
-          (sum, item) => sum + item.quantity * item.initialPrice,
-          0
-        );
-        const itemsCount = (order.items || []).reduce(
-          (sum, item) => sum + item.quantity,
-          0
-        );
+        const totalAmount = (order.items || []).reduce((sum, item) => sum + item.quantity * item.initialPrice, 0);
+        const itemsCount = (order.items || []).reduce((sum, item) => sum + item.quantity, 0);
 
         // 1. Upsert в таблицу orders
         const { data: insertedOrder, error: orderError } = await supabase
@@ -146,7 +141,7 @@ async function main() {
               created_at: order.createdAt || new Date().toISOString(),
               updated_at: new Date().toISOString(),
             },
-            { onConflict: "external_id", ignoreDuplicates: false }
+            { onConflict: "external_id", ignoreDuplicates: false },
           )
           .select("id")
           .single();
@@ -162,15 +157,13 @@ async function main() {
 
           const itemsToInsert = order.items.map((item) => ({
             order_id: insertedOrder.id,
-            product_name: item.offer?.displayName || "Неизвестный товар",
+            product_name: item.productName || item.offer?.name || item.offer?.displayName || "Неизвестный товар",
             quantity: item.quantity,
             price: item.initialPrice,
             total: item.quantity * item.initialPrice,
           }));
 
-          const { error: itemsError } = await supabase
-            .from("order_items")
-            .insert(itemsToInsert);
+          const { error: itemsError } = await supabase.from("order_items").insert(itemsToInsert);
 
           if (itemsError) {
             throw new Error(`Ошибка при вставке позиций ${order.id}: ${itemsError.message}`);

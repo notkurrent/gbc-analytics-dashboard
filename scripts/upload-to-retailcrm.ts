@@ -51,7 +51,7 @@ interface RetailCrmOrderPayload {
   orderMethod: string;
   status: string;
   items: Array<{
-    offer: { displayName: string };
+    productName: string;
     quantity: number;
     initialPrice: number;
   }>;
@@ -114,7 +114,7 @@ function mapToRetailCrmOrder(mock: MockOrder): RetailCrmOrderPayload {
     orderMethod: mock.orderMethod,
     status: mock.status,
     items: mock.items.map((item) => ({
-      offer: { displayName: item.productName },
+      productName: item.productName,
       quantity: item.quantity,
       initialPrice: item.initialPrice,
     })),
@@ -129,10 +129,7 @@ function mapToRetailCrmOrder(mock: MockOrder): RetailCrmOrderPayload {
  * Отправляет один заказ в RetailCRM с retry-логикой.
  * При 429 (rate limit) или 500 (server error) — повторяет 1 раз с задержкой.
  */
-async function sendOrder(
-  order: RetailCrmOrderPayload,
-  attempt: number = 0
-): Promise<RetailCrmResponse> {
+async function sendOrder(order: RetailCrmOrderPayload, attempt: number = 0): Promise<RetailCrmResponse> {
   // Добавляем site=notkurrent как параметр, часто RetailCRM требует указания магазина
   const url = `${RETAILCRM_URL}/api/v5/orders/create?apiKey=${RETAILCRM_API_KEY}&site=notkurrent`;
 
@@ -204,13 +201,13 @@ async function main(): Promise<void> {
 
       console.log(
         `[${String(index).padStart(2, "0")}/${orders.length}] ✅ ${fullName} — ${formatPrice(total)}` +
-          (result.id ? ` (ID: ${result.id})` : "")
+          (result.id ? ` (ID: ${result.id})` : ""),
       );
       successCount++;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.log(
-        `[${String(index).padStart(2, "0")}/${orders.length}] ❌ ${fullName} — ${formatPrice(total)} | Ошибка: ${message}`
+        `[${String(index).padStart(2, "0")}/${orders.length}] ❌ ${fullName} — ${formatPrice(total)} | Ошибка: ${message}`,
       );
       errorCount++;
     }
