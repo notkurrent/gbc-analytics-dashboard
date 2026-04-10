@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GBC Analytics Dashboard
 
-## Getting Started
+## 🎯 Описание
+Мини-дашборд аналитики заказов, реализованный в рамках тестового задания. Дашборд отображает KPI метрики, графики продаж (по времени, городам и источникам) и последние заказы.
 
-First, run the development server:
+**Основные фичи:**
+- 🔄 Интеграция с RetailCRM API (синхронизация заказов)
+- 💾 PostgreSQL база данных (через Supabase)
+- 🤖 Уведомления о крупных заказах (>50,000 ₸) в Telegram (через вебхуки)
+- 🌙 Элегантный тёмный UI с микро-анимациями (shadcn/ui + Recharts)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠 Технологии
+- **Frontend/Backend:** Next.js 16 (App Router), TypeScript
+- **UI:** Tailwind CSS, shadcn/ui
+- **Charts:** Recharts (встроен в shadcn)
+- **База данных:** Supabase (поверх PostgreSQL)
+- **Уведомления:** Telegram Bot API
+- **Деплой:** Vercel
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Как запустить локально
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Клонируйте репозиторий:**
+   ```bash
+   git clone <url_репозитория>
+   cd gbc-analytics-dashboard
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Настройте переменные окружения:**
+   - Скопируйте `.env.example` в `.env.local`
+   - Заполните ключи доступа к RetailCRM, Supabase и Telegram.
+   ```bash
+   cp .env.example .env.local
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Запустите проект:**
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📦 Скрипты (Фазы 2 и 3)
+Проект содержит утилиты для быстрой загрузки данных:
+- `npx tsx scripts/upload-to-retailcrm.ts` — парсит `mock_orders.json` и отправляет 50 заказов в RetailCRM по API v5.
+- `npx tsx scripts/sync-to-supabase.ts` — забирает заказы из RetailCRM и синхронизирует их с БД Supabase (разбивая на `orders` и `order_items`).
+- `npx tsx scripts/check-large-orders.ts` — fallback-скрипт (если недоступны Webhooks RetailCRM) для проверки крупных заказов и отправки в TG.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📊 Демонстрация
+*(Добавьте сюда ссылку или скриншоты готового дашборда и скриншот сообщения в Telegram перед отправкой задания)*
 
-## Deploy on Vercel
+## 🤖 Процесс разработки с AI
+Проект был реализован с помощью AI-ассистента с использованием разбиения на изолированные фазы (Phased Architecture). 
+- Использованные навыки (skills): `frontend-design`, `vercel-react-best-practices`, `supabase-postgres-best-practices`
+- Был составлен детальный 6-этапный план, где каждый этап реализовывался независимо.
+- Вызовы: маппинг структур данных между локальным JSON, RetailCRM API и реляционной БД Supabase. Успешно решены через написание утилитарных синхронизационных скриптов.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔗 Ссылки
+- **Дашборд:** [Укажите ссылку на Vercel]
+- **Репозиторий:** [Укажите ссылку на GitHub]

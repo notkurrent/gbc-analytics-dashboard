@@ -42,6 +42,7 @@ export interface Order {
   items_count: number;
   created_at: string;
   updated_at: string;
+  notified?: boolean;
 }
 
 export interface OrderItem {
