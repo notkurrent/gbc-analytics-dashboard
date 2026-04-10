@@ -116,6 +116,10 @@ async function main() {
     totalPages = data.pagination.totalPageCount;
 
     for (const order of data.orders) {
+      if (order.status === "cancel-other") {
+        console.log(`   ⏭ Заказ #${order.id} пропущен (статус cancel-other).`);
+        continue;
+      }
       try {
         const totalAmount = (order.items || []).reduce((sum, item) => sum + item.quantity * item.initialPrice, 0);
         const itemsCount = (order.items || []).reduce((sum, item) => sum + item.quantity, 0);

@@ -80,7 +80,7 @@ curl -X POST https://gbc-analytics-dashboard-eta.vercel.app/api/webhook/retailcr
 
 ## 🤖 Процесс разработки с AI (Фаза 6)
 
-Проект был реализован с помощью AI-ассистента с использованием разбиения на изолированные фазы (Phased Architecture).
+Проект был реализован с помощью AI-инструментов с использованием разбиения на изолированные фазы (Phased Architecture).
 
 - Использованные навыки (skills): `frontend-design`, `vercel-react-best-practices`, `supabase-postgres-best-practices`
 - Был составлен детальный 6-этапный план, где каждый этап реализовывался независимо.
@@ -100,6 +100,7 @@ curl -X POST https://gbc-analytics-dashboard-eta.vercel.app/api/webhook/retailcr
    **Решение:** Написаны утилитарные скрипты для маппинга и синхронизации (`upload-to-retailcrm.ts`, `sync-to-supabase.ts`).
 3. **Проблема:** RetailCRM демо-аккаунт иногда сильно ограничивает вебхуки (или их нельзя создать).
    **Решение:** Написан fallback-скрипт `scripts/check-large-orders.ts`, который работает по принципу поллинга (через крон / запуск вручную), проверяя новые заказы в таблице `orders` на > 50,000 ₸.
+4. И остальные проблемы и баги были мелкими и быстро фиксились
 
 ## 🔗 Ссылки
 
