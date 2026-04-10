@@ -1,17 +1,26 @@
+import { Bot } from "grammy";
 import { formatCurrency } from "./utils";
 
-const TELEGRAM_API = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}`;
+export async function sendOrderNotification(order: { name: string; city: string; amount: number; items: any[] }) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
 
-export async function sendOrderNotification(order: {
-  name: string;
-  city: string;
-  amount: number;
-  items: string[];
-}) {
-  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
+  if (!token || !chatId) {
     console.warn("TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not set.");
     return;
   }
+
+  const bot = new Bot(token);
+
+  const formattedItems = order.items.map((i) => {
+    if (typeof i === "string") return i;
+    if (i && typeof i === "object") {
+      const name = i.name || i.productName || i.offer?.displayName || "Неизвестный товар";
+      const qty = i.quantity ? ` (${i.quantity} шт.)` : "";
+      return `${name}${qty}`;
+    }
+    return "Неизвестный товар";
+  });
 
   const message = `
 🔔 *Крупный заказ!*
@@ -19,25 +28,14 @@ export async function sendOrderNotification(order: {
 📍 ${order.city || "Не указан"}
 💰 ${formatCurrency(order.amount)}
 📦 Товары:
-${order.items.length > 0 ? order.items.map(i => `  • ${i}`).join('\n') : "  • Нет данных"}
+${formattedItems.length > 0 ? formattedItems.map((i) => `  • ${i}`).join("\n") : "  • Нет данных"}
   `.trim();
 
   try {
-    const response = await fetch(`${TELEGRAM_API}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: process.env.TELEGRAM_CHAT_ID,
-        text: message,
-        parse_mode: "Markdown",
-      }),
+    await bot.api.sendMessage(chatId, message, {
+      parse_mode: "Markdown",
     });
-
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error("Failed to send telegram message:", errorData);
-    }
   } catch (error) {
-    console.error("Error sending order notification to Telegram:", error);
+    console.error("Error sending order notification to Telegram via grammY:", error);
   }
 }
