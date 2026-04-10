@@ -27,7 +27,7 @@ export function OrdersByCity({ data }: OrdersByCityProps) {
   }, [data]);
 
   return (
-    <Card className="flex flex-col h-full bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 transition-all duration-500 shadow-xl group">
+    <Card className="flex flex-col h-full bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 transition-colors duration-500 transform-gpu shadow-xl group">
       <CardHeader className="items-center pb-2">
         <CardTitle className="text-white drop-shadow-sm">Заказы по городам</CardTitle>
         <CardDescription className="text-zinc-400">Распределение заказов</CardDescription>

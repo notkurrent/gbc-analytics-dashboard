@@ -121,8 +121,8 @@ export default async function DashboardPage() {
     <div className="min-h-screen bg-background pb-12 relative selection:bg-primary/30">
       {/* Premium Ambient Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-chart-1/10 blur-[60px] md:blur-[120px]" />
-        <div className="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-chart-2/10 blur-[80px] md:blur-[150px]" />
+        <div className="hidden md:block absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-chart-1/10 blur-[120px]" />
+        <div className="hidden md:block absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-chart-2/10 blur-[150px]" />
       </div>
 
       {/* Header section with a subtle gradient matching the dark luxury aesthetic */}

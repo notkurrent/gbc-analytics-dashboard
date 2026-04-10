@@ -12,7 +12,7 @@ interface StatsCardsProps {
 export function StatsCards({ totalOrders, totalRevenue, avgCheck, uniqueCities }: StatsCardsProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-1/50 transition-all duration-500 shadow-xl overflow-hidden relative group">
+      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-1/50 transition-colors duration-500 transform-gpu shadow-xl overflow-hidden relative group">
         <div className="absolute inset-0 bg-gradient-to-br from-chart-1/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
           <CardTitle className="text-sm font-medium text-zinc-400">Всего заказов</CardTitle>
@@ -28,7 +28,7 @@ export function StatsCards({ totalOrders, totalRevenue, avgCheck, uniqueCities }
         </CardContent>
       </Card>
 
-      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-2/50 transition-all duration-500 shadow-xl overflow-hidden relative group">
+      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-2/50 transition-colors duration-500 transform-gpu shadow-xl overflow-hidden relative group">
         <div className="absolute inset-0 bg-gradient-to-br from-chart-2/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
           <CardTitle className="text-sm font-medium text-zinc-400">Общая выручка</CardTitle>
@@ -44,7 +44,7 @@ export function StatsCards({ totalOrders, totalRevenue, avgCheck, uniqueCities }
         </CardContent>
       </Card>
 
-      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-3/50 transition-all duration-500 shadow-xl overflow-hidden relative group">
+      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-3/50 transition-colors duration-500 transform-gpu shadow-xl overflow-hidden relative group">
         <div className="absolute inset-0 bg-gradient-to-br from-chart-3/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
           <CardTitle className="text-sm font-medium text-zinc-400">Средний чек</CardTitle>
@@ -60,7 +60,7 @@ export function StatsCards({ totalOrders, totalRevenue, avgCheck, uniqueCities }
         </CardContent>
       </Card>
 
-      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-4/50 transition-all duration-500 shadow-xl overflow-hidden relative group">
+      <Card className="bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-chart-4/50 transition-colors duration-500 transform-gpu shadow-xl overflow-hidden relative group">
         <div className="absolute inset-0 bg-gradient-to-br from-chart-4/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
           <CardTitle className="text-sm font-medium text-zinc-400">Города</CardTitle>

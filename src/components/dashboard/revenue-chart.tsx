@@ -17,7 +17,7 @@ interface RevenueChartProps {
 
 export function RevenueChart({ data }: RevenueChartProps) {
   return (
-    <Card className="flex flex-col h-full bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 transition-all duration-500 shadow-xl group">
+    <Card className="flex flex-col h-full bg-white/5 md:backdrop-blur-xl border-white/10 hover:bg-white/10 transition-colors duration-500 transform-gpu shadow-xl group">
       <CardHeader>
         <CardTitle className="text-white drop-shadow-sm">Динамика выручки</CardTitle>
         <CardDescription className="text-zinc-400">Общая сумма заказов по дням</CardDescription>
